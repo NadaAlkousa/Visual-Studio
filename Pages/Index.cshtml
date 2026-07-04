@@ -1,0 +1,277 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Nada AlKousa | Studio";
+}
+
+<!-- Custom CSS Styling -->
+<style>
+    :root {
+        --accent-glow: #00f2fe;
+        --accent-magenta: #4facfe;
+        --dark-space: #0b0c10;
+        --glass-bg: rgba(20, 24, 35, 0.65);
+        --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    body {
+        background-color: var(--dark-space);
+        color: #fff;
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Background Interactive Canvas */
+    #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Glassmorphism Showcase Card */
+    .studio-card {
+        position: relative;
+        z-index: 2;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        padding: 3.5rem;
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 
+                    0 0 40px rgba(79, 172, 254, 0.1);
+        max-width: 850px;
+        width: 90%;
+        text-align: center;
+    }
+
+    /* Nada's Animated Heading */
+    .nada-headline {
+        font-size: 4rem;
+        font-weight: 900;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        position: relative;
+        display: inline-block;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+        cursor: pointer;
+    }
+
+    .tagline {
+        font-size: 1rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: #85929E;
+        margin-top: 10px;
+        margin-bottom: 2.5rem;
+    }
+
+    /* Video Frame Custom Style */
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+        transform: scale(1);
+        transition: transform 0.4s ease;
+    }
+
+    .video-wrapper:hover {
+        transform: scale(1.02);
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Visualizer Container Layout */
+    .visualizer-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 40px;
+        gap: 4px;
+        margin-bottom: 2rem;
+    }
+
+    .bar {
+        width: 6px;
+        height: 5px;
+        background: linear-gradient(to top, var(--accent-magenta), var(--accent-glow));
+        border-radius: 3px;
+        transition: height 0.05s ease;
+    }
+
+    /* Corner Badges for Visual Identity */
+    .brand-badge {
+        position: absolute;
+        top: 25px;
+        right: 30px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0.6;
+        border: 1px solid rgba(255,255,255,0.3);
+        padding: 4px 10px;
+        border-radius: 20px;
+    }
+</style>
+
+<!-- Particle Background Matrix Layer -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- Main Visual Card Container -->
+<div class="studio-card">
+    <div class="brand-badge">N Studio // 2026</div>
+
+    <!-- Unique Dynamic Heading -->
+    <h1 id="dynamic-h1" class="nada-headline">Nada AlKousa</h1>
+    <div class="tagline">Creative Development Sandbox</div>
+
+    <!-- Dynamic Simulated Audio Visualizer (Loops via JS) -->
+    <div class="visualizer-container" id="visualizer">
+        <!-- Bars will dynamically inject via JavaScript -->
+    </div>
+
+    <!-- Embedded Video (Interstellar Main Theme - Live) -->
+    <div class="video-wrapper">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VcmDhNn7bqc?si=-RmCTEzkPgqoANqZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <p style="margin-top: 2.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.4); letter-spacing: 1px;">
+        Asp.Net Core Core Deployment &bull; Powered by JavaScript Animation Loops
+    </p>
+</div>
+
+<!-- Scripts Engine -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        
+        // --- 1. JAVASCRIPT H1 ANIMATION LOOP (Wave / Matrix Glitch style) ---
+        const h1 = document.getElementById("dynamic-h1");
+        const originalText = h1.innerText;
+        const glyphs = "XØYµZ10###***";
+        let loopCounter = 0;
+
+        function animateText() {
+            loopCounter += 0.04;
+            
+            // Subtly skew and change text shadow property over time
+            const dynamicGlow = Math.sin(loopCounter) * 15 + 15;
+            const horizontalShift = Math.cos(loopCounter) * 3;
+            h1.style.textShadow = `${horizontalShift}px 0px ${dynamicGlow}px rgba(0, 242, 254, 0.8)`;
+            h1.style.transform = `skewX(${Math.sin(loopCounter) * 2}deg) scale(${1 + Math.sin(loopCounter) * 0.02})`;
+
+            // Micro-matrix glitch trigger every few seconds
+            if (Math.random() > 0.98) {
+                let textArray = originalText.split("");
+                const randomIdx = Math.floor(Math.random() * textArray.length);
+                textArray[randomIdx] = glyphs[Math.floor(Math.random() * glyphs.length)];
+                h1.innerText = textArray.join("");
+                
+                setTimeout(() => { h1.innerText = originalText; }, 80);
+            }
+
+            requestAnimationFrame(animateText);
+        }
+        animateText();
+
+
+        // --- 2. LOOPED SIMULATED MUSIC VISUALIZER ---
+        const visualizer = document.getElementById("visualizer");
+        const totalBars = 22;
+        const barElements = [];
+
+        // Generate bars dynamically
+        for (let i = 0; i < totalBars; i++) {
+            const bar = document.createElement("div");
+            bar.className = "bar";
+            visualizer.appendChild(bar);
+            barElements.push(bar);
+        }
+
+        function loopVisualizer() {
+            barElements.forEach((bar, index) => {
+                // Creates a rhythmic wave behavior utilizing trigonometry math loops
+                const time = Date.now() * 0.004;
+                let waveHeight = Math.sin(index * 0.4 + time) * 18 + 22; 
+                // Mix in random noise for realistic audio reaction simulation
+                waveHeight += Math.random() * 6; 
+                bar.style.height = `${Math.max(4, waveHeight)}px`;
+            });
+            requestAnimationFrame(loopVisualizer);
+        }
+        loopVisualizer();
+
+
+        // --- 3. BACKGROUND FLOATING PARTICLE MATRIX ---
+        const canvas = document.getElementById("particle-canvas");
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random();
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 242, 254, ${this.opacity * 0.3})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 65; i++) {
+            particles.push(new Particle());
+        }
+
+        function loopParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(loopParticles);
+        }
+        loopParticles();
+    });
+</script>
